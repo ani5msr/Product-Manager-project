@@ -1,4 +1,8 @@
 package com.anirudh.productMan.core;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +14,23 @@ public class Product {
 	private long id;
 	private String company, mfdDate, expDate, idNumber;
 	private int batchNo, price;
-	@Column(name="explanation", nullable=false, length=512)
+	@Column(name="explanation", nullable=true, length=512)
 	private String description;
+	public Product() {}
+	public Product(String company, String mfdDate, String expDate, String idNumber, int batchNo, int price, Seller seller) {
+		super();
+		this.company = company;
+		this.mfdDate = mfdDate;
+		this.expDate = expDate;
+		this.idNumber = idNumber;
+		this.batchNo = batchNo;
+		this.price = price;
+		this.seller = seller;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "seller")
+	private Seller seller;
 	public long getId() {
 		return id;
 	}
@@ -59,5 +78,8 @@ public class Product {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Seller getSeller()  {
+	    return seller;
 	}
 }
