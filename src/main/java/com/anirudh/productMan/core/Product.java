@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.*;
 @Entity
 public class Product {
 	@Id
@@ -31,6 +32,14 @@ public class Product {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "seller")
 	private Seller seller;
+
+	public Seller getSeller() {
+	 return seller;
+	}
+	public void setSeller(Seller seller)  {
+	    this.seller = seller;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -78,8 +87,5 @@ public class Product {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public Seller getSeller()  {
-	    return seller;
 	}
 }

@@ -5,9 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.List;
-
+import java.util.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Seller {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -21,10 +23,10 @@ public class Seller {
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
-	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="seller")
 	private List<Product> products;
-
+	
 	public long getSellerid() {
 		return sellerid;
 	}

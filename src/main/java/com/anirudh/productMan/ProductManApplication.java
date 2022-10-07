@@ -26,7 +26,8 @@ public class ProductManApplication implements CommandLineRunner {
 		// Add owner objects and save these to db 
 		Seller seller1 = new Seller("John" , "Johnson");
 		Seller seller2 = new  Seller("Mary" , "Robinson");
-		selrepository.saveAll(Arrays.asList(seller1, seller2));
+		Seller seller3 = new  Seller("Ry" , "Binson");
+		selrepository.saveAll(Arrays.asList(seller1, seller2,seller3));
 
 		// Add car object and link to owners and save these to db
 		Product pro1 = new Product("Kellogs", "March/2014", "August/2016", 
